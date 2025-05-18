@@ -49,9 +49,20 @@ class _VerificaMaioridadeScreenState extends State<VerificaMaioridadeScreen> {
   }
 
    void irParaSegundaTela() {
+    final String nome = nomeController.text.trim();
+
+    if (nome.isEmpty) {
+      setState(() {
+        resultado = 'Digite seu nome antes de ir para a outra tela.';
+      });
+      return;
+    }
+
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SegundaTela()),
+      MaterialPageRoute(
+        builder: (context) => SegundaTela(nome: nome),
+      ),
     );
   }
 
@@ -100,16 +111,19 @@ class _VerificaMaioridadeScreenState extends State<VerificaMaioridadeScreen> {
 }
 
 class SegundaTela extends StatelessWidget {
-  const SegundaTela({super.key});
+  final String nome;
+
+  const SegundaTela({super.key, required this.nome});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Segunda Tela')),
-      body: const Center(
+      body: Center(
         child: Text(
-          'Você está na segunda tela!',
-          style: TextStyle(fontSize: 22),
+          'Olá, $nome! Bem-vindo à segunda tela!',
+          style: const TextStyle(fontSize: 22),
+          textAlign: TextAlign.center,
         ),
       ),
     );
