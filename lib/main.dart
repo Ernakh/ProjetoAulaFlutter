@@ -48,6 +48,13 @@ class _VerificaMaioridadeScreenState extends State<VerificaMaioridadeScreen> {
     });
   }
 
+   void irParaSegundaTela() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SegundaTela()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +82,34 @@ class _VerificaMaioridadeScreenState extends State<VerificaMaioridadeScreen> {
               resultado,
               style: const TextStyle(fontSize: 18),
             ),
+             const SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: irParaSegundaTela,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green, // cor diferente
+                ),
+                child: const Text('Ir para outra tela'),
+              ),
+            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SegundaTela extends StatelessWidget {
+  const SegundaTela({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Segunda Tela')),
+      body: const Center(
+        child: Text(
+          'Você está na segunda tela!',
+          style: TextStyle(fontSize: 22),
         ),
       ),
     );
